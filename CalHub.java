@@ -957,10 +957,11 @@ public class CalHub extends JFrame {
                 }
             } else if (text.equals("=")) {
                 try {
+                    String inputExpr = expr; // Save the current expression before evaluation
                     double val = new ExpressionEvaluator(expr, degreeMode).parse();
                     String resStr = (val == Math.floor(val) && !Double.isInfinite(val)) ? String.valueOf((long)val) : String.valueOf(val);
                     display.setText(resStr);
-                    CalHub.addToHistory("Scientific: " + expr + " = " + resStr);
+                    CalHub.addToHistory("Scientific: " + inputExpr + " = " + resStr); // Log the original input
                     expr = resStr;
                 } catch (Exception ex) {
                     display.setText("Error");
